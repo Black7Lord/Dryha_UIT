@@ -2,49 +2,211 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button;
+    Button button1, button2, button3, button4, button5, button6, button7, button8,
+            button9, buttonPlus, button0, buttonMinus, buttonMult, buttonDiv, buttonRes, buttonC;
     TextView textView;
-    EditText editText;
+    String temp = "";
+    float flTemp = 0;
+    List<String> pr = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
+        textView = findViewById(R.id.textView);
+        button1 = findViewById(R.id.button);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button4);
+        button5 = findViewById(R.id.button5);
+        button6 = findViewById(R.id.button6);
+        button7 = findViewById(R.id.button7);
+        button8 = findViewById(R.id.button8);
+        button9 = findViewById(R.id.button9);
+        buttonPlus = findViewById(R.id.buttonPlus);
+        button0 = findViewById(R.id.button0);
+        buttonMinus = findViewById(R.id.buttonMinus);
+        buttonMult = findViewById(R.id.buttonMult);
+        buttonDiv = findViewById(R.id.buttonDiv);
+        buttonRes = findViewById(R.id.buttonRes);
+        buttonC = findViewById(R.id.buttonC);
+
+        initBtnsListener();
+
+    }
+
+    public void initBtnsListener() {
+        buttonC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Ho, ho, ho!", Toast.LENGTH_LONG).show();
-                readText();
+                temp = "";
+                flTemp = 0;
+                pr.clear();
+                textView.setText(temp);
             }
         });
 
-        textView = findViewById(R.id.textView2);
-        editText = findViewById(R.id.editText1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                temp += "1";
+                textView.setText(temp);
+            }
+        });
 
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                temp += "2";
+                textView.setText(temp);
+            }
+        });
 
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                temp += "3";
+                textView.setText(temp);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                temp += "4";
+                textView.setText(temp);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                temp += "5";
+                textView.setText(temp);
+            }
+        });
+
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                temp += "6";
+                textView.setText(temp);
+            }
+        });
+
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                temp += "7";
+                textView.setText(temp);
+            }
+        });
+
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                temp += "8";
+                textView.setText(temp);
+            }
+        });
+
+        button9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                temp += "9";
+                textView.setText(temp);
+            }
+        });
+
+        buttonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pr.add(textView.getText().toString());
+                pr.add("+");
+                textView.setText("");
+                temp = "";
+            }
+        });
+
+        button0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                temp += "0";
+                textView.setText(temp);
+            }
+        });
+
+        buttonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pr.add(textView.getText().toString());
+                pr.add("-");
+                textView.setText("");
+                temp = "";
+            }
+        });
+
+        buttonMult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pr.add(textView.getText().toString());
+                pr.add("*");
+                textView.setText("");
+                temp = "";
+            }
+        });
+
+        buttonDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pr.add(textView.getText().toString());
+                pr.add("/");
+                textView.setText("");
+                temp = "";
+            }
+        });
+
+        buttonRes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pr.add(textView.getText().toString());
+                switch (pr.get(1)) {
+                    case ("+"):
+                        flTemp = Integer.parseInt(pr.get(0)) +
+                                Integer.parseInt(pr.get(2));
+                        textView.setText(String.valueOf(flTemp));
+                        break;
+                    case ("-"):
+                        flTemp = Integer.parseInt(pr.get(0)) -
+                                Integer.parseInt(pr.get(2));
+                        textView.setText(String.valueOf(flTemp));
+                        break;
+                    case ("*"):
+                        flTemp = Integer.parseInt(pr.get(0)) *
+                                Integer.parseInt(pr.get(2));
+                        textView.setText(String.valueOf(flTemp));
+                        break;
+                    case ("/"):
+                        if (pr.get(2).equals("0")) {
+                            textView.setText("Error!"); break;
+                        } else {flTemp = (Float.parseFloat(pr.get(0)) /
+                                                        Float.parseFloat(pr.get(2)));
+                        textView.setText(String.valueOf(flTemp)); break;}
+                }
+                pr.clear();
+                }
+            });
     }
-
-    void readText(){
-        String text = editText.getText().toString();
-        textView.setText(text + " - OK");
-    }
-
 }
